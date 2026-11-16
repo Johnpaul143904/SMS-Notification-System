@@ -13,8 +13,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
-import os
-from dotenv import load_dotenv
+import os # this is operating utilities.
+from dotenv import load_dotenv #import a function that can read the .env file and load the environment variables into the system's environment variables.
 
 load_dotenv()
 
@@ -35,7 +35,11 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+    if host.strip()
+]
 
 
 # Application definition
@@ -146,9 +150,10 @@ MAILERS = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://localhost:5173",
+    "http://127.0.0.1:5500",
+    "http://localhost:5500",
+    "http://127.0.0.1:5001",
+    "http://localhost:5001",
 ]
 
 TEXTBEE_API_KEY = os.getenv("TEXTBEE_API_KEY")

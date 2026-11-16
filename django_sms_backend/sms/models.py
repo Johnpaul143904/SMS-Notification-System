@@ -12,7 +12,7 @@ class SMSMessage(models.Model):
         ('unknown', 'Unknown'),
     ]
 
-    recipient = models.CharField(max_length=20)
+    recipient = models.CharField(max_length=20) #This could store the phone number as the recipient.
 
     message = models.TextField()
 

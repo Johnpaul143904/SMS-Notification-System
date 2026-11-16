@@ -1,4 +1,4 @@
-# Validates incoming API data.
+# Validates incoming API data. Just Like DTO
 from rest_framework import serializers
 from .models import SMSMessage
 import re
@@ -31,9 +31,10 @@ class SMSMessageSerializer(serializers.ModelSerializer):
 
     def validate_recipient(self, value):
 
-        value = value.strip()
-
-        pattern = r'^\+[1-9]\d{7,14}$'
+        value = value.strip() #remove spaces from the beginning and end of the string
+        
+        #This regex pattern matches international phone numbers that start with a '+' sign, followed by a country code (1-9), and then 7 to 14 digits.
+        pattern = r'^\+[1-9]\d{7,14}$'  
 
         if not re.fullmatch(pattern, value):
             raise serializers.ValidationError(
@@ -51,9 +52,9 @@ class SMSMessageSerializer(serializers.ModelSerializer):
                 "Message cannot be empty."
             )
 
-        if len(value) > 1600:
+        if len(value) > 160:
             raise serializers.ValidationError(
-                "Message cannot exceed 1600 characters."
+                "Message cannot exceed 160 characters."
             )
 
         return value
