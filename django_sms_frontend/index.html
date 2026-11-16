@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMS Sender - Send SMS Message</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <!-- Logo -->
+        <div class="brand">
+          <div class="brand-icon">
+            <svg width="34" height="28" viewBox="0 0 34 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 9H8" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M3 15H10" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M12 4C12 2.34315 13.3431 1 15 1H29C30.6569 1 32 2.34315 32 4V18C32 19.6569 30.6569 21 29 21H20L15 25V21H15C13.3431 21 12 19.6569 12 18V4Z" fill="white"/>
+              <circle cx="18" cy="11" r="1.5" fill="#0b1a30"/>
+              <circle cx="22" cy="11" r="1.5" fill="#0b1a30"/>
+              <circle cx="26" cy="11" r="1.5" fill="#0b1a30"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1 class="brand-title">SMS Sender</h1>
+            <p class="brand-subtitle">Send. Connect. Stay in Touch.</p>
+          </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="nav-menu" aria-label="Main Navigation">
+          <button class="nav-item active" data-nav="home" id="nav-home">
+            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+            <span>Home</span>
+          </button>
+          
+          <button class="nav-item" data-nav="history" id="nav-history">
+            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+              <path d="M3 3v5h5"/>
+              <path d="M12 7v5l4 2"/>
+            </svg>
+            <span>History</span>
+          </button>
+
+          <button class="nav-item" data-nav="about" id="nav-about">
+            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="16" x2="12" y2="12"/>
+              <line x1="12" y1="8" x2="12.01" y2="8"/>
+            </svg>
+            <span>About</span>
+          </button>
+
+          <button class="nav-item" data-nav="logout" id="nav-logout">
+            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+              <polyline points="16 17 21 12 16 7"/>
+              <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+            <span>Logout</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- Sidebar Decorative Bottom Trail -->
+      <div class="sidebar-footer">
+        <svg class="sidebar-plane-svg" viewBox="0 0 190 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Curved dashed flight trail -->
+          <path d="M10 180 C 25 150, 50 145, 68 165 C 85 185, 110 160, 102 135 C 92 110, 68 108, 64 125 C 60 142, 80 152, 100 138 C 130 114, 140 70, 168 38" 
+                stroke="#24426b" stroke-width="2" stroke-dasharray="4 4" stroke-linecap="round"/>
+          <!-- Flying Paper Plane -->
+          <g transform="translate(148, 20) rotate(38)">
+            <polygon points="0,26 22,0 35,28 19,23" fill="#4d86f7"/>
+            <polygon points="19,23 22,0 0,26" fill="#ffffff"/>
+            <polygon points="19,23 22,30 25,24" fill="#a4c6ff"/>
+          </g>
+        </svg>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+      <!-- Top Header Navigation Bar (Matches screenshot: only Group Project on right) -->
+      <header class="top-header">
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+        
+        <div class="header-right">
+          <!-- Group Project User Dropdown -->
+          <div class="user-dropdown-container">
+            <button class="user-dropdown-btn" id="user-dropdown-btn" aria-expanded="false">
+              <div class="user-avatar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+              </div>
+              <span class="user-name">Group Project</span>
+              <svg class="dropdown-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="user-menu-popover" id="user-menu-popover">
+              <div class="popover-header">
+                <strong>Group Project Team</strong>
+                <span>IT120 SMS Gateway Client</span>
+              </div>
+              <a href="#settings" class="popover-item" id="popover-config">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/>
+                </svg>
+                SMS Gateway Settings
+              </a>
+              <a href="#about" class="popover-item" id="popover-about">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+                </svg>
+                Project Details
+              </a>
+              <div class="popover-divider"></div>
+              <button class="popover-item danger" id="popover-logout">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+                Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Body Container -->
+      <main class="content-container">
+        <!-- Top Section: 2 Columns (Left: Title + Form, Right: Illustration) -->
+        <section class="hero-section">
+          <!-- Left Column -->
+          <div class="hero-left">
+            <!-- Title & Subtitle Banner -->
+            <div class="page-title-section">
+              <div class="title-icon-wrapper">
+                <svg class="title-chat-icon" width="46" height="46" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Chat bubble -->
+                  <path d="M6 14C6 8.47715 10.4772 4 16 4H32C37.5228 4 42 8.47715 42 14V28C42 33.5228 37.5228 38 32 38H18L8 44V38C6.89543 38 6 37.1046 6 36V14Z" fill="#1b64d7"/>
+                  <!-- 3 dots -->
+                  <circle cx="16" cy="21" r="2.8" fill="white"/>
+                  <circle cx="24" cy="21" r="2.8" fill="white"/>
+                  <circle cx="32" cy="21" r="2.8" fill="white"/>
+                  <!-- Accent dashes -->
+                  <path d="M43 8L48 5" stroke="#1b64d7" stroke-width="2.5" stroke-linecap="round"/>
+                  <path d="M41 1L44 0" stroke="#1b64d7" stroke-width="2.5" stroke-linecap="round"/>
+                  <path d="M47 14L50 15" stroke="#1b64d7" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="title-content">
+                <h2 class="page-title">Send SMS Message</h2>
+                <p class="page-description">Enter the recipient's number and your message below.</p>
+              </div>
+            </div>
+
+            <!-- SMS Form Card -->
+            <div class="card form-card">
+              <form id="sms-form" novalidate>
+                <!-- Recipient Phone Number -->
+                <div class="form-group">
+                  <label for="recipient-phone" class="form-label">
+                    <svg class="label-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                      <line x1="12" y1="18" x2="12.01" y2="18"/>
+                    </svg>
+                    <span>Recipient Phone Number</span>
+                  </label>
+                  <div class="input-wrapper">
+                    <input 
+                      type="tel" 
+                      id="recipient-phone" 
+                      name="recipient" 
+                      class="form-control" 
+                      placeholder="e.g. +63 912 345 6789"
+                      autocomplete="tel"
+                      required
+                    >
+                  </div>
+                  <div class="validation-message" id="phone-validation-msg"></div>
+                </div>
+
+                <!-- Message Input -->
+                <div class="form-group">
+                  <label for="message-text" class="form-label">
+                    <svg class="label-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                      <line x1="8" y1="9" x2="16" y2="9"/>
+                      <line x1="8" y1="13" x2="13" y2="13"/>
+                    </svg>
+                    <span>Message</span>
+                  </label>
+                  <div class="textarea-wrapper">
+                    <textarea 
+                      id="message-text" 
+                      name="message" 
+                      class="form-control form-textarea" 
+                      rows="3" 
+                      maxlength="160"
+                      placeholder="Type your message here..."
+                      required
+                    ></textarea>
+                    <div class="char-counter" id="char-counter" aria-live="polite">0 / 160</div>
+                  </div>
+                  <div class="validation-message" id="message-validation-msg"></div>
+                </div>
+
+                <!-- Send SMS Button -->
+                <div class="form-action">
+                  <button type="submit" class="btn btn-primary" id="send-sms-btn">
+                    <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
+                    <span class="btn-text">Send SMS</span>
+                    <div class="spinner" id="btn-spinner" style="display: none;"></div>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Right Column: Visual Vector Illustration -->
+          <div class="hero-right">
+            <div class="illustration-wrapper" aria-hidden="true">
+              <svg class="sms-illustration-svg" viewBox="0 0 460 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <!-- Soft Cloud Backdrop Gradient -->
+                  <radialGradient id="cloudGrad" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#dbeafc" stop-opacity="0.95"/>
+                    <stop offset="65%" stop-color="#e8f2fd" stop-opacity="0.75"/>
+                    <stop offset="100%" stop-color="#f0f4f9" stop-opacity="0"/>
+                  </radialGradient>
+                  
+                  <!-- Phone Realistic Drop Shadow -->
+                  <filter id="phoneShadow" x="-25%" y="-20%" width="150%" height="150%" filterUnits="userSpaceOnUse">
+                    <feDropShadow dx="6" dy="18" stdDeviation="18" flood-color="#142646" flood-opacity="0.16" />
+                  </filter>
+                  
+                  <!-- Airplane Shadow -->
+                  <filter id="planeShadow" x="-20%" y="-20%" width="150%" height="150%">
+                    <feDropShadow dx="3" dy="8" stdDeviation="7" flood-color="#17448c" flood-opacity="0.25" />
+                  </filter>
+                </defs>
+
+                <!-- Soft organic background cloud/blob -->
+                <path d="M130 200 C 110 80, 230 30, 330 60 C 410 90, 455 180, 420 260 C 370 330, 260 340, 190 320 C 130 300, 140 250, 130 200 Z" 
+                      fill="url(#cloudGrad)"/>
+
+                <!-- Dotted Flight Trail looping behind phone to the airplane -->
+                <path d="M210 230 C 150 240, 100 170, 130 110 C 160 50, 280 40, 350 85 C 390 110, 405 85, 415 65" 
+                      stroke="#8ebbf0" stroke-width="2.5" stroke-dasharray="5 5" stroke-linecap="round"/>
+
+                <!-- Botanical Foliage: Left Sprig -->
+                <g class="foliage-left" transform="translate(105, 230)">
+                  <path d="M30 80 C 15 55, 10 35, 0 10 C 18 20, 28 40, 30 80 Z" fill="#2563eb" opacity="0.85"/>
+                  <path d="M30 80 C 20 45, 35 25, 45 0 C 42 25, 35 55, 30 80 Z" fill="#60a5fa" opacity="0.75"/>
+                  <path d="M30 80 C 5 70, -10 60, -20 50 C -5 52, 15 65, 30 80 Z" fill="#1d4ed8" opacity="0.9"/>
+                  <circle cx="30" cy="80" r="3" fill="#1e40af"/>
+                </g>
+
+                <!-- Botanical Foliage: Right Sprig -->
+                <g class="foliage-right" transform="translate(390, 280)">
+                  <path d="M10 60 C 5 40, 0 25, -15 8 C -2 16, 5 30, 10 60 Z" fill="#3b82f6" opacity="0.85"/>
+                  <path d="M10 60 C 20 40, 35 30, 50 18 C 38 32, 25 48, 10 60 Z" fill="#1d4ed8" opacity="0.95"/>
+                  <path d="M10 60 C 10 35, 20 18, 25 -5 C 22 18, 18 40, 10 60 Z" fill="#93c5fa" opacity="0.7"/>
+                </g>
+
+                <!-- Central Smartphone (Tilted 9.5 deg clockwise) -->
+                <g transform="translate(245, 195) rotate(9.5)" filter="url(#phoneShadow)">
+                  <!-- Phone Outer Chassis -->
+                  <rect x="-72" y="-128" width="144" height="256" rx="28" fill="#182740" stroke="#0e182a" stroke-width="3"/>
+                  
+                  <!-- Phone Screen -->
+                  <rect x="-62" y="-116" width="124" height="232" rx="20" fill="#f8fafc"/>
+                  
+                  <!-- Phone Earpiece Speaker -->
+                  <rect x="-16" y="-108" width="32" height="4.5" rx="2.25" fill="#334155"/>
+                  
+                  <!-- Blue SMS Bubble on Screen -->
+                  <g transform="translate(-46, -50)">
+                    <!-- Speech Bubble with Pointer Tail -->
+                    <path d="M0 10 C0 4.48 4.48 0 10 0 H82 C87.52 0 92 4.48 92 10 V50 C92 55.52 87.52 60 82 60 H26 L10 74 V60 H10 C4.48 60 0 55.52 0 50 Z" 
+                          fill="#1a65d6"/>
+                    <!-- SMS Text inside Bubble -->
+                    <text x="46" y="39" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="800" font-size="24" fill="white" text-anchor="middle" letter-spacing="1.2">SMS</text>
+                  </g>
+
+                  <!-- Message skeleton bars below bubble -->
+                  <rect x="-42" y="36" width="84" height="9" rx="4.5" fill="#e2e8f0"/>
+                  <rect x="-42" y="54" width="56" height="9" rx="4.5" fill="#edf2f7"/>
+
+                  <!-- Home Indicator Bar at Bottom -->
+                  <rect x="-24" y="98" width="48" height="3.5" rx="1.75" fill="#94a3b8"/>
+                </g>
+
+                <!-- Radiating Action/Sparkle Dashes near top-right of phone -->
+                <path d="M352 135 L370 126" stroke="#2563eb" stroke-width="3.2" stroke-linecap="round"/>
+                <path d="M366 154 L384 152" stroke="#2563eb" stroke-width="3.2" stroke-linecap="round"/>
+                <path d="M350 168 L366 177" stroke="#2563eb" stroke-width="3.2" stroke-linecap="round"/>
+
+                <!-- Large Folded Paper Airplane at Top Right -->
+                <g transform="translate(380, 62) rotate(-14)" filter="url(#planeShadow)">
+                  <polygon points="0,60 64,0 94,66 53,53" fill="#2563eb"/>
+                  <polygon points="53,53 64,0 0,60" fill="#60a5fa"/>
+                  <polygon points="53,53 57,72 66,60" fill="#1d4ed8"/>
+                  <line x1="64" y1="0" x2="53" y2="53" stroke="#93c5fd" stroke-width="1.8"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        <!-- Dynamic Success / Error Notification Banner -->
+        <section class="alert-section" id="alert-container">
+          <div class="alert-card alert-success" id="status-alert" role="alert">
+            <div class="alert-icon-container">
+              <svg class="alert-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="11" fill="#16a34a"/>
+                <path d="M7.5 12.5L10.5 15.5L16.5 9.5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="alert-text-body">
+              <strong class="alert-headline" id="alert-title"></strong>
+              <p class="alert-detail" id="alert-message"></p>
+            </div>
+            <button class="alert-close-btn" id="alert-close-btn" aria-label="Dismiss notification">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </section>
+
+        <!-- Message History Section -->
+        <section class="card history-card" id="history-section">
+          <div class="history-card-header">
+            <div class="history-title-group">
+              <div class="history-header-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <h3 class="history-title">Message History</h3>
+            </div>
+            <div class="history-actions">
+              <button class="btn btn-outline" id="refresh-history-btn">
+                <svg class="refresh-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                </svg>
+                <span>Refresh</span>
+              </button>
+              <span class="history-note" title="The backend does not provide a delete endpoint.">Database history is managed by Django</span>
+            </div>
+          </div>
+
+          <!-- History Table -->
+          <div class="table-responsive">
+            <table class="history-table" id="history-table">
+              <thead>
+                <tr>
+                  <th scope="col" style="width: 25%;">Date & Time</th>
+                  <th scope="col" style="width: 22%;">Recipient</th>
+                  <th scope="col" style="width: 38%;">Message</th>
+                  <th scope="col" style="width: 15%; text-align: center;">Status</th>
+                </tr>
+              </thead>
+              <tbody id="history-table-body"></tbody>
+            </table>
+            <!-- Empty state indicator -->
+            <div class="empty-history" id="empty-history" role="status" aria-live="polite">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.8">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+              <p>Loading SMS history from Django...</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Gateway Configuration Modal -->
+  <div class="modal-backdrop" id="settings-modal" aria-hidden="true" role="dialog" aria-labelledby="settings-modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b64d7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+          <h3 id="settings-modal-title">Django Backend Settings</h3>
+        </div>
+        <button class="modal-close" id="settings-close-btn" aria-label="Close settings">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-intro">SMS requests go through Django. Keep the TextBee API key in the backend <code>.env</code> file; it is never used by this page.</p>
+        
+        <div class="form-group">
+          <label for="cfg-api-url" class="form-label">Django API Base URL</label>
+          <input type="url" id="cfg-api-url" class="form-control" value="http://127.0.0.1:8000/api/sms/" readonly>
+          <small class="field-hint">Send: <code>send/</code> &nbsp; History: <code>history/</code></small>
+        </div>
+
+        <div class="config-status-box">
+          <span class="status-indicator active"></span>
+          <span id="config-status-label">Provider: Django REST Framework</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="settings-done-btn">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Modal -->
+  <div class="modal-backdrop" id="about-modal" aria-hidden="true" role="dialog" aria-labelledby="about-modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b64d7" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+          <h3 id="about-modal-title">About SMS Sender Gateway</h3>
+        </div>
+        <button class="modal-close" id="about-close-btn" aria-label="Close about">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="about-card-badge">IT120 SMS Gateway Project</div>
+        <p>This web application is a single-page SMS Gateway client engineered with modern <strong>HTML5</strong>, <strong>CSS3</strong>, and <strong>vanilla JavaScript</strong>.</p>
+        <ul class="about-features-list">
+          <li><strong>Input Validation:</strong> Validates mobile phone numbers (+63 / international E.164 formats) and enforces 160-character SMS constraints.</li>
+          <li><strong>Provider Connectivity:</strong> Sends messages to the Django REST API, which communicates with TextBee using backend credentials.</li>
+          <li><strong>Persistent History:</strong> Loads SMS transaction records from the Django database; this page does not create local history.</li>
+          <li><strong>Responsive Design:</strong> Replicates the desktop layout down to every shadow, badge, and color palette.</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="about-ok-btn">Got it</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="assertive"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,24 +1,25 @@
+# Environment variables
+.env
+.env.*
+!.env.example
 
-# Python
-**/venv/
-**/__pycache__/
+# Python virtual environment
+venv/
+.venv/
+
+# Python cache
+__pycache__/
 *.py[cod]
-**/.env
-**/db.sqlite3
 
 # Django
-**/staticfiles/
+db.sqlite3
 
-# Node / Nuxt
-**/node_modules/
-**/.nuxt/
-**/.output/
-**/dist/
+# Node modules
+node_modules/
+
+# Build files
+dist/
+.nuxt/
 
 # IDE
 .vscode/
-.idea/
-
-# OS
-.DS_Store
-Thumbs.db
