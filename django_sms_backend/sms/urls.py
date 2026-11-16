@@ -2,7 +2,8 @@
 from django.urls import path
 from .views import (
     SendSMSAPIView,
-    SMSHistoryAPIView
+    SMSHistoryAPIView,
+    TextBeeWebhookAPIView
 )
 
 
@@ -19,5 +20,11 @@ urlpatterns = [
         SMSHistoryAPIView.as_view(),
         name='sms-history'
     ),
+    
+    path(
+        'webhook/',
+        TextBeeWebhookAPIView.as_view(),
+        name='textbee-webhook'
+    )
 
 ]

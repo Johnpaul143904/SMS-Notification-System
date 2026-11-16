@@ -31,6 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = 'django-insecure-n%ns@r35&d-94#_f*fkpw-q&3g7n1&!drr#9*-al)ycvp-mt(f'
 
 SECRET_KEY = os.getenv("SECRET_KEY")
+TEXTBEE_WEBHOOK_SECRET = os.getenv('TEXTBEE_WEBHOOK_SECRET', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
